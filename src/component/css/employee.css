@@ -1,0 +1,9 @@
+.employee .employeeListDisplay  {
+    color: #333;
+    padding: 15px;
+    font-family: 'Times New Roman', Times, serif;
+    margin-bottom: 15px;
+}
+.employee .addEmployee {
+    vertical-align: top;
+}
