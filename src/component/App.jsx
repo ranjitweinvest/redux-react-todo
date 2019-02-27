@@ -9,7 +9,8 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <Route index={true} path='/employee' component={Employee} />
+        <Route path='/' component={NavLinks} />
+          <Route path='/employee' component={Employee} />
           <Route path='/task' component={Task} />
         </div>
       </BrowserRouter>
