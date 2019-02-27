@@ -13,6 +13,7 @@ export default class ModalEmployee extends Component {
     let result = Object.assign({}, {[compType]:{...this.state[compType],[field]:value}});
     this.setState(result);
   }
+  
   handleSubmit = (e) => {
     let {compType} = this.props;
     this.props.handleSubmit(this.state[compType]);
