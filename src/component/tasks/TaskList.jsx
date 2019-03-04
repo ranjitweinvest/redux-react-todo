@@ -15,10 +15,10 @@ class employeeList extends Component {
           <thead>
             <tr>
               <th>id</th>
-              <th>Name</th>
+              <th>Task Name</th>
               <th>Estimation</th>
               <th>Company</th>
-              <th></th>
+              <th>Employee ID Assigned To</th>
               <th></th>
             </tr>
           </thead>

@@ -19,31 +19,60 @@ export default class ModalEmployee extends Component {
     this.props.handleSubmit(this.state[compType]);
     this.setState({ [compType]: {}});
   }
+  handleOnChange = (e) => {
+    let {compType} = this.props;
+    let result = Object.assign({}, {[compType]:{...this.state[compType],employeeTask: e.target.value}});
+    this.setState(result);
+  }
   
   render() {
-    let { fields, compType } = this.props;
+    let { fields, compType, employee} = this.props;
+
+    employee = (employee && employee.data) ? employee.data : [];
+
     return (
       <Modal {...this.props} aria-labelledby="contained-modal-title-vcenter">
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
           {`Add ${this.props.compType}`}
-              </Modal.Title>
+              </Modal.Title>  
         </Modal.Header>
         <Modal.Body>
           <Container>
             <form>
               {fields.map((field, index) =>{
-                let value = this.state[compType] && this.state[compType][field] ? this.state[compType][field] : "";
+                let value = this.state[compType] && this.state[compType][field.name] ? this.state[compType][field.name] : "";
                  return (
                   <Row className="show-grid" key={index}>
                   <Col >
-                    <code><label htmlFor={field}>{field}</label></code>
+                    <code><label htmlFor={field.name}>{field.name} </label></code>
                   </Col>
                   <Col >
-                    <code><input type="text" id={field} value={value} onChange={(e)=>{this.handleChange(e, field)}} /></code>
+                    <code><input type={field.type} id={field.name} value={value}  onChange={(e)=>{this.handleChange(e, field.name)} } /></code>
                   </Col>
                 </Row>
               )})}
+              
+            {employee.length ? (
+            
+            <Row className="show-grid" key={'test'}>
+            <Col >
+              <code><label htmlFor={"test"}>{"test"}</label></code>
+            </Col>
+            <Col >
+              <code><select onChange={this.handleOnChange}>
+              <option value="">-Select Employee-</option>
+              {
+                employee.map((emp) => {
+                  let val = [];
+                  val.push(emp.name);
+                  return (
+                    <option value={val}>{val}</option>
+                  )
+                })
+              }</select></code>
+            </Col>
+          </Row>) : null}  
             </form>
           </Container>
         </Modal.Body>

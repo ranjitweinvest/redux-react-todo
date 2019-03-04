@@ -33,7 +33,7 @@ class employee extends Component {
     this.props.filterEmployee(e.target.value);
   }
   render() {
-    let { employee } = this.props;
+    let { employee, tasks } = this.props;
     let { sortBy } = this.state;
     return (
       <div className="employee">
@@ -47,9 +47,15 @@ class employee extends Component {
         </div>
         <AddEmployee fields={['name', 'age', 'designation']}
                      compType={'Employee'}
+                     fields={[
+                      {name: 'name' , type: 'text'},
+                      {name: 'age', type: 'number'},
+                      {name: 'designation', type: 'text'}
+                     ]}
                      addEmployee={this.addEmployee} />
         
         <EmployeeList employee={employee}
+                      tasks={tasks}
                       deleteEmployee={this.deleteEmployee}
                       editEmployee={this.editEmployee}
                       saveEmployee={this.saveEmployee} />
@@ -58,5 +64,5 @@ class employee extends Component {
   }
 }
 const mapDispatchToProps = (dispatch) => (addEmployeeAction(dispatch));
-const mapStateToProps = (state) => ({ employee: helloSelector(state.employee) })
+const mapStateToProps = (state) => ({ employee: helloSelector(state.employee), tasks: state.tasks });
 export default connect(mapStateToProps, mapDispatchToProps)(employee);

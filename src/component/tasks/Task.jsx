@@ -9,7 +9,6 @@ class Task extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      editTaskValue: {},
       sortBy: ""
     }
     this.editTask = this.editTask.bind(this);
@@ -33,7 +32,7 @@ class Task extends Component {
     this.props.filterTask(e.target.value);
   }
   render() {
-    let { tasks } = this.props;
+    let { tasks, employee } = this.props;
     let { sortBy } = this.state;
     return (
       <div className="task">
@@ -46,7 +45,12 @@ class Task extends Component {
           </select>
         </div>
         <AddTask addTask={this.addTask}
-                 fields={['name', 'estimation', 'company']}
+                 employee={employee}
+                 fields={[
+                   {name: 'name' , type: 'text'},
+                   {name: 'estimation', type: 'number'},
+                   {name: 'company', type: 'text'}
+                  ]}
                  compType={'Task'} />
 
         <TaskList task={tasks} 
@@ -58,5 +62,5 @@ class Task extends Component {
   }
 }
 const mapDispatchToProps = (dispatch) => (AddTaskAction(dispatch));
-const mapStateToProps = (state) => ({ tasks: helloSelector_task(state.tasks) })
+const mapStateToProps = (state) => ({ tasks: helloSelector_task(state.tasks), employee: state.employee })
 export default connect(mapStateToProps, mapDispatchToProps)(Task);

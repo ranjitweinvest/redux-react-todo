@@ -7,8 +7,9 @@ export default class EditEmployeeList extends Component {
             id: this.props.task.id,
             name: this.props.task.name,
             estimation: this.props.task.estimation,
-            company: this.props.task.company
-				};
+            company: this.props.task.company,
+            employeeTask: this.props.task.employeeTask
+		    };
 				this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleChange = (e) => {
@@ -22,11 +23,12 @@ export default class EditEmployeeList extends Component {
 				name: "",
 				estimation: "",
 				company: "",
-				id: ""
+                id: "",
+                employeeTask: ""
 			});
 		}
     render() {
-				let {name , estimation, company } = this.state
+				let {name , estimation, company, employeeTask } = this.state
 
         return (
             <Fragment>
@@ -34,6 +36,7 @@ export default class EditEmployeeList extends Component {
                 <td><input type="text" id="name" value={name} onChange={this.handleChange} /></td>
                 <td><input type="text" id="estimation" value={estimation} onChange={this.handleChange} /></td>
                 <td><input type="text" id="company" value={company} onChange={this.handleChange} /></td>
+                <td><input type="text" id="employeeTask" value={employeeTask} onChange={this.handleChange} /></td>
                 <td><button disabled> Delete Employee</button></td>
                 <td><button onClick={this.handleSubmit}>Save</button></td>
             </Fragment>

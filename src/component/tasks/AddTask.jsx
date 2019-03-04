@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ModalEmployee from '../ReusableComponents/ModalEmployee';
-import {Button, Grid, Row, Col, ButtonToolbar} from 'react-bootstrap';
+import {Button,  ButtonToolbar} from 'react-bootstrap';
 
 export default class addEmployee extends Component {
   constructor(props) {
@@ -21,7 +21,7 @@ export default class addEmployee extends Component {
     }
    
   render() {
-    let { fields, compType } = this.props;
+    let { fields, compType, employee } = this.props;
     let modalClose = () => this.setState({ modalShow: false });
     return (
       <div className="float-md-right">
@@ -34,6 +34,7 @@ export default class addEmployee extends Component {
           </Button>
           <ModalEmployee fields={fields}
                          show={this.state.modalShow}
+                         employee={employee}
                          onHide={modalClose}
                          compType={compType}
                          states={this.state}

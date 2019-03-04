@@ -8,7 +8,7 @@ class employeeList extends Component {
   }
 
   render() {
-    let { employee } = this.props;
+    let { employee, tasks } = this.props;
     employee = (employee && employee.length) ? employee : [];
     return (
       <div className="employeeListDisplay">
@@ -16,10 +16,10 @@ class employeeList extends Component {
           <thead>
             <tr>
               <th>id</th>
-              <th>Name</th>
+              <th>Employee Name</th>
               <th>Age</th>
               <th>Designation</th>
-              <th></th>
+              <th>Tasks Related</th>
               <th></th>
             </tr>
           </thead>
@@ -29,6 +29,7 @@ class employeeList extends Component {
               if (!employee.edit) {
                 tr = (
                   <DisplayEmployeeList 
+                    tasks={tasks}
                     employee={employee} 
                     deleteEmployee={this.props.deleteEmployee}
                     editEmployee={this.props.editEmployee} />
